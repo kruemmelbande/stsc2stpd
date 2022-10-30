@@ -1,3 +1,27 @@
 # Stsc2Stpd V.Aplha 0.1
 var: test=Hello World
 out: test
+var: test=1.1
+out: test
+var: test=1
+out: test
+out: "Testing 123"
+
+out: test
+out: test*2*2+(2+2)
+var: test=2.4
+out: test
+var: test=test
+out: test
+var: test=uwu
+out: test
+
+out: test
+var: test=1 << 2
+out: test
+if: test { {
+out: "Works!"
+ }
+if: !test { {
+out: "Doesnt work!"
+ }

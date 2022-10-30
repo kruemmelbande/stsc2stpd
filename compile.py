@@ -1,4 +1,4 @@
-version="Aplha 0.1"
+version="Aplha 0.1.1"
 print("preparing to compile...")
 
 from sys import argv as args, exit
@@ -18,17 +18,24 @@ i=0
 while i in range(len(input)):
     line=input[i].replace("out","outln").replace("outlnln","outln")
     funcname=line.strip().split(' ')[0].strip()
-    
+    workingline=""
     if funcname=="outln":
 
-        out.append(f"out: {cut(line,'outln')}")
+        workingline+=f"out: {cut(line,'outln')}"
     elif funcname=="var":
         if "label" in line:
             print("Label not supported yet")
             exit()
         name=line.split(' ')[2]
         value=line.split('=')[1].strip().replace('"','')
-        out.append(f"var: {name}={value}")
+        workingline+=f"var: {name}={value}"
+    elif funcname=="if":
+        workingline+=f"if: {cut(line,'if')}"
+    if "{" in line:
+        workingline+=" {"
+    if "}" in line:
+        workingline+=" }"
+    out.append(workingline)
     i+=1
 with open(outfile, 'w') as f:
     print("compiling done!")
